@@ -3,18 +3,31 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
+app.options('*', cors());
 const authRoutes = require("./routes/auth");
 const taskRoutes = require("./routes/tasks");
 
 const app = express();
 
 // CORS configuration
-app.use(
-  cors({
-    origin: process.env.CLIENT_URL || "*",
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: function (origin, callback) {
+    const allowed = [
+      'https://indpro-rosy.vercel.app',
+      'http://localhost:5173'
+    ];
+    // Strip trailing slash if present
+    const normalizedOrigin = origin ? origin.replace(/\/$/, '') : origin;
+    if (!origin || allowed.includes(normalizedOrigin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Body parser
 app.use(express.json());
