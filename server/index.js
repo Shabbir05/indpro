@@ -3,10 +3,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-app.options('*', cors());
-const authRoutes = require("./routes/auth");
-const taskRoutes = require("./routes/tasks");
-
 const app = express();
 
 // CORS configuration
@@ -16,7 +12,6 @@ app.use(cors({
       'https://indpro-rosy.vercel.app',
       'http://localhost:5173'
     ];
-    // Strip trailing slash if present
     const normalizedOrigin = origin ? origin.replace(/\/$/, '') : origin;
     if (!origin || allowed.includes(normalizedOrigin)) {
       callback(null, true);
@@ -29,19 +24,20 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Body parser
+app.options('*', cors());
+
+const authRoutes = require("./routes/auth");
+const taskRoutes = require("./routes/tasks");
+
 app.use(express.json());
 
-// Health check
 app.get("/", (req, res) => {
   res.json({ status: "ok", message: "Task Manager API is running" });
 });
 
-// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// Global error handler
 app.use((err, req, res, _next) => {
   console.error("Server error:", err.message);
   const status = err.statusCode || 500;
@@ -50,9 +46,7 @@ app.use((err, req, res, _next) => {
   });
 });
 
-// Connect to MongoDB and start server
 const PORT = process.env.PORT || 5000;
-
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
