@@ -54,8 +54,8 @@ task-manager/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
-cd task-manager
+git clone https://github.com/Shabbir05/indpro.git
+cd \
 ```
 
 ### 2. Backend setup
