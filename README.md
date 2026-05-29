@@ -2,7 +2,7 @@
 
 A full-stack Kanban-style task management application. Register an account, create tasks, and track your progress across **Todo**, **In Progress**, and **Done** stages.
 
-> **Live Demo**: [Frontend](https://indpro-rosy.vercel.app)
+> **Live Demo**: [Website](https://indpro-rosy.vercel.app)
 ---
 
 ## Tech Stack
