@@ -21,22 +21,22 @@ A full-stack Kanban-style task management application. Register an account, crea
 
 ```
 task-manager/
-├── client/         # React + Vite frontend
+├── client/         
 │   ├── src/
-│   │   ├── api/          # Axios instance
-│   │   ├── components/   # TaskCard, TaskColumn, TaskModal
-│   │   ├── context/      # AuthContext (JWT + user state)
-│   │   ├── pages/        # AuthPage, Dashboard
-│   │   ├── App.jsx       # Router setup
-│   │   ├── main.jsx      # Entry point
-│   │   └── index.css     # All styles
+│   │   ├── api/          
+│   │   ├── components/   
+│   │   ├── context/      
+│   │   ├── pages/        
+│   │   ├── App.jsx       
+│   │   ├── main.jsx      
+│   │   └── index.css     
 │   ├── index.html
 │   └── package.json
-├── server/         # Node.js + Express backend
-│   ├── models/           # User, Task (Mongoose)
-│   ├── routes/           # auth, tasks
-│   ├── middleware/        # JWT auth middleware
-│   ├── index.js          # Server entry point
+├── server/         
+│   ├── models/           
+│   ├── routes/          
+│   ├── middleware/        
+│   ├── index.js          
 │   └── package.json
 └── README.md
 ```
